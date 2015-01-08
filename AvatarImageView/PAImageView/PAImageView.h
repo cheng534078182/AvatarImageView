@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign, getter = isCacheEnabled) BOOL cacheEnabled;
 
-- (id)initWithFrame:(CGRect)frame backgroundProgressColor:(UIColor *)backgroundProgresscolor progressColor:(UIColor *)progressColor;
+- (id)initWithFrame:(CGRect)frame backgroundProgressColor:(UIColor *)backgroundProgresscolor progressColor:(UIColor *)progressColor placeholderImage:(UIImage *)placeholder;
 - (void)setImageURL:(NSString *)URL;
 
 @end

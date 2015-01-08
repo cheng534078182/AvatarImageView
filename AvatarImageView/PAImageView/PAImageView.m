@@ -47,13 +47,13 @@ NSString * const spm_identifier = @"spm.imagecache.tg";
 
 @implementation PAImageView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame placeholderImage:(UIImage *)image{
     return [[PAImageView alloc] initWithFrame:frame
-                            backgroundProgressColor:[UIColor whiteColor]
-                                      progressColor:[UIColor colorWithRed:240/255.f green:85/255.f blue:97/255.f alpha:1.f]];
+                      backgroundProgressColor:[UIColor whiteColor]
+                                progressColor:[UIColor colorWithRed:240/255.f green:85/255.f blue:97/255.f alpha:1.f] placeholderImage:image];
 }
 
-- (id)initWithFrame:(CGRect)frame backgroundProgressColor:(UIColor *)backgroundProgresscolor progressColor:(UIColor *)progressColor
+- (id)initWithFrame:(CGRect)frame backgroundProgressColor:(UIColor *)backgroundProgresscolor progressColor:(UIColor *)progressColor placeholderImage:(UIImage *)placeholder
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -62,7 +62,7 @@ NSString * const spm_identifier = @"spm.imagecache.tg";
         self.layer.masksToBounds    = NO;
         self.clipsToBounds          = YES;
         _cacheEnabled               = YES;
-
+        
         _cache = [[SPMImageCache alloc] init];
         
         CGPoint arcCenter           = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
@@ -101,6 +101,9 @@ NSString * const spm_identifier = @"spm.imagecache.tg";
         _containerImageView.clipsToBounds = YES;
         _containerImageView.contentMode = UIViewContentModeScaleAspectFill;
         
+        _containerImageView.image = placeholder;
+        
+        
         [_progressContainer.layer addSublayer:_backgroundLayer];
         [_progressContainer.layer addSublayer:_progressLayer];
         
@@ -109,7 +112,6 @@ NSString * const spm_identifier = @"spm.imagecache.tg";
     }
     return self;
 }
-
 - (void)setImageURL:(NSString *)URL {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:URL]];
     UIImage *cachedImage = (_cacheEnabled) ? [_cache getImageForURL:URL] : nil;
