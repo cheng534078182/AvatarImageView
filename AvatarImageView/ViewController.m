@@ -34,8 +34,6 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    
-    
     PAImageView *avaterImageView = [[PAImageView alloc]initWithFrame:CGRectMake((self.view.bounds.size.width-imageSize)/2, (self.view.bounds.size.height-imageSize)/2-150, imageSize, imageSize) backgroundProgressColor:[UIColor whiteColor] progressColor:[UIColor lightGrayColor] placeholderImage:[UIImage imageNamed:@""]];
     [self.view addSubview:avaterImageView];
     
